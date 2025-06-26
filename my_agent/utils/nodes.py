@@ -1,6 +1,7 @@
 from functools import lru_cache
 from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 from my_agent.utils.tools import tools
 from langgraph.prebuilt import ToolNode
 
@@ -11,6 +12,12 @@ def _get_model(model_name: str):
         model = ChatOpenAI(temperature=0, model_name="gpt-4o")
     elif model_name == "anthropic":
         model =  ChatAnthropic(temperature=0, model_name="claude-3-sonnet-20240229")
+    elif model_name == "groq":
+        model = ChatGroq(
+            temperature=0,
+            model_name="llama3-8b-8192",
+            groq_api_key="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"
+        )
     else:
         raise ValueError(f"Unsupported model type: {model_name}")
 
@@ -29,7 +36,9 @@ def should_continue(state):
         return "continue"
 
 
-system_prompt = """Be a helpful assistant"""
+system_prompt = """You are helping a user with `job search`, once they have a good idea of the job they are searching for, you can use the job search tool to help them find. 
+After you've helped them to find a job, you can use the `resume generation` tool to help them create a resume
+"""
 
 # Define the function that calls the model
 def call_model(state, config):

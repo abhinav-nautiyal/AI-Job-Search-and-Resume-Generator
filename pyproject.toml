@@ -1,0 +1,8 @@
+[project]
+name = "langgraph-resume-generation"
+version = "0.1.0"
+description = "Resume generation with LangGraph"
+requires-python = ">=3.11"
+ 
+[tool.setuptools.packages.find]
+include = ["my_agent"]
