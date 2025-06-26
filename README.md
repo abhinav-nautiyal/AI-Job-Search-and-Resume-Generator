@@ -1,14 +1,73 @@
-# LangGraph Cloud Example
+# AI-Powered Resume Generation Assistant
 
-![](static/agent_ui.png)
+The Resume Generation Assistant is an AI-powered application that helps users create professional resumes and search for jobs. This project combines conversational AI with document generation to provide a seamless experience for job seekers.
 
-This is an example agent to deploy with LangGraph Cloud.
+## Table of Contents
+- [Project Structure](#project-structure)
+- [Features](#features)
+- [Prerequisites & Installation](#prerequisites--installation)
 
-> [!TIP]
-> If you would rather use `pyproject.toml` for managing dependencies in your LangGraph Cloud project, please check out [this repository](https://github.com/langchain-ai/langgraph-example-pyproject).
+## Project Structure
 
-[LangGraph](https://github.com/langchain-ai/langgraph) is a library for building stateful, multi-actor applications with LLMs. The main use cases for LangGraph are conversational agents, and long-running, multi-step LLM applications or any LLM application that would benefit from built-in support for persistent checkpoints, cycles and human-in-the-loop interactions (ie. LLM and human collaboration).
+```bash
+project-root/
+├── langgraph-resume-generation/       # Backend AI components
+│   ├── my_agent/
+│   │   ├── agent.py                  # LangGraph agent definition
+│   │   ├── utils/
+│   │   │   ├── nodes.py              # Conversation nodes and logic
+│   │   │   ├── tools.py              # Job search and resume generation tools
+│   │   │   └── utils.py              # Resume template processing
+│   ├── latex_to_pdf.py               # LaTeX to PDF converter
+│   ├── latex_style_resume.tex        # Professional LaTeX resume template
+│   └── langgraph.json                # LangGraph configuration
+│
+└── my-app/                           # Next.js frontend
+    ├── app/                          # Next.js app router
+    │   └── page.tsx                  # Main application page
+    ├── components/                   # UI components
+    │   ├── assistant/                # Assistant UI components
+    │   │   ├── Thread.tsx            # Chat thread implementation
+    │   │   └── TooltipIconButton.tsx # Custom tooltip buttons
+    │   └── ui/                       # ShadCN UI components
+    ├── lib/                          # Utility functions
+    │   └── chatApi.ts                # API communication helpers
+    └── public/                       # Static assets
+```
 
-LangGraph shortens the time-to-market for developers using LangGraph, with a one-liner command to start a production-ready HTTP microservice for your LangGraph applications, with built-in persistence. This lets you focus on the logic of your LangGraph graph, and leave the scaling and API design to us. The API is inspired by the OpenAI assistants API, and is designed to fit in alongside your existing services.
+## Features
 
-In order to deploy this agent to LangGraph Cloud you will want to first fork this repo. After that, you can follow the instructions [here](https://langchain-ai.github.io/langgraph/cloud/) to deploy to LangGraph Cloud.
+### Conversational Interface
+- Natural language interaction for resume building
+- Guided prompts for collecting professional information
+- Context-aware responses
+
+### Job Search Integration
+- Find relevant jobs based on skills and location
+- Filter by salary requirements and posting date
+- Direct links to job postings
+
+### Professional Resume Templates
+- LaTeX-based templates with customizable sections
+- Multiple layout options (chronological, functional, hybrid)
+- ATS-friendly formatting
+
+### PDF Generation
+- Automatic conversion to high-quality PDF
+- Customizable styling options
+- Downloadable output
+
+### Responsive UI
+- Clean, modern interface
+- Dark/light mode support
+- Mobile-friendly design
+
+## Prerequisites 
+
+### Prerequisites
+- Node.js 18+
+- Python 3.9+
+- pdflatex (for PDF generation)
+  - On Linux: `sudo apt-get install texlive-full`
+  - On macOS: `brew install mactex`
+  - On Windows: Install [MiKTeX](https://miktex.org/)
